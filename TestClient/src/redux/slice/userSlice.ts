@@ -84,8 +84,6 @@ const userSlice = createSlice({
                 state.status = DataStatus.SUCCESS
                 state.user = action.payload!
                 state.error = undefined
-
-
             })
             .addCase(fetchRegister.rejected, (state, action) => {
                 state.status = DataStatus.FAILED
