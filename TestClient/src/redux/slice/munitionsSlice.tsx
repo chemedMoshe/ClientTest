@@ -27,7 +27,6 @@ export const fetchMunition = createAsyncThunk('munition',
             }
 
             const data = await res.json()
-console.log(data);
 
             return thunkApi.fulfillWithValue(data)
         } catch (error) {

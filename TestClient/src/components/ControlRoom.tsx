@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from '../redux/store';
 import { fetchGetDispatch, fetchMunition, fetchNewDispatch } from '../redux/slice/munitionsSlice';
 import { useEffect, useState } from 'react';
 import { LocationsEnum } from '../types/LocationEnum';
+import { socket } from '../main';
 
 export default function ControlRoom() {
   const user = useAppSelector(state => state.user)
@@ -16,7 +17,7 @@ export default function ControlRoom() {
     dispatch(fetchGetDispatch(user?.user?.Id!))
   }, [accountDispatch])
 
-
+ 
 
 
   return (
@@ -26,7 +27,15 @@ export default function ControlRoom() {
       >
         {x.name} {x.amount}
         <button
-          onClick={() => dispatch(fetchNewDispatch({ id: user?.user?.Id!, missiles: x.name, location }))}
+          onClick={() =>{
+            socket.emit('dispatch',  location )
+             dispatch(fetchNewDispatch({ 
+              id: user?.user?.Id!,
+               missiles: x.name, location 
+              }
+            ))
+          }
+          }
           disabled={!location}
         >Dispatch</button>
         </div>)}

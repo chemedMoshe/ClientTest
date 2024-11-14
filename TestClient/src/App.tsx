@@ -1,7 +1,5 @@
-import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Pages from "./components/Pages";
-import Register from "./components/Register";
 import { useAppSelector } from "./redux/store";
 
 export default function App() {
