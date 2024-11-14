@@ -13,6 +13,7 @@ export default function IdfRoom() {
   socket.on('alarm', (data) => {
     setAlarms(data)
   })
+ 
   useEffect(() => {
     
     dispatch(fetchMunition(user?.Id!))
