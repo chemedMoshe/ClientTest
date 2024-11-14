@@ -67,6 +67,7 @@ const userSlice = createSlice({
                 state.status = DataStatus.SUCCESS
                 state.error = undefined
                 state.user = action.payload as unknown as IUser
+                
             })
             .addCase(fetchLogin.rejected, (state, action) => {
                 state.status = DataStatus.FAILED

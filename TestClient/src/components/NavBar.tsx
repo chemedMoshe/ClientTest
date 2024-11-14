@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../redux/store';
 import { useEffect } from 'react';
+import { OrganizationEnum } from '../types/OrganizationEnum';
 
 export default function NavBar() {
     const navigate = useNavigate();
@@ -21,10 +22,10 @@ export default function NavBar() {
     <div className="navbar">
             {localStorage.getItem('token') ? (
                 <>
-                    {user.user?.Location  && (
+                    {user.user?.Organization== OrganizationEnum.IDF  && (
                         <NavLink to={"/controlroom"}>DefendPage</NavLink> )
                     }    
-                    {!user.user?.Location  && (
+                    {!(user.user?.Organization== OrganizationEnum.IDF)  && (
                         <NavLink to={"/controlroom"}>AtteckPage</NavLink> )
                     }
                     <button

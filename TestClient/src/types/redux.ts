@@ -17,6 +17,7 @@ export interface MunitionState  {
     status: DataStatus,
     error: undefined|string,
     munitions: null|[{name:string, amount:number}],
-    dispatch:[{name:string,status:string}]|[]
+    dispatch:[{id:string,name:string,status:string}]|[]
+    accountDispatch:number
     
 }
