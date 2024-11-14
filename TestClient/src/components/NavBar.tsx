@@ -23,7 +23,7 @@ export default function NavBar() {
             {localStorage.getItem('token') ? (
                 <>
                     {user.user?.Organization== OrganizationEnum.IDF  && (
-                        <NavLink to={"/controlroom"}>DefendPage</NavLink> )
+                        <NavLink to={"/idfroom"}>DefendPage</NavLink> )
                     }    
                     {!(user.user?.Organization== OrganizationEnum.IDF)  && (
                         <NavLink to={"/controlroom"}>AtteckPage</NavLink> )
