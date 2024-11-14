@@ -9,9 +9,21 @@ export default function IdfRoom() {
   const accountDispatch = useAppSelector(state => state.munitions.accountDispatch)
   const dispatch = useAppDispatch();
  const [alarms , setAlarms] = useState('')
+const [timer , setTimer] = useState(0)
+ 
+const countDownTime = (time:number)=>{
+   const interval = setInterval(() => {
+    if(time == 0){
+      clearInterval(interval)
+    }
+    setTimer(timer-1)
 
+   }, time*1000); 
+  
+ }
   socket.on('alarm', (data:{location:string,name:string,time:number}) => {
     setAlarms(data.location)
+    countDownTime(data.time)
   })
  
   useEffect(() => {
@@ -21,7 +33,7 @@ export default function IdfRoom() {
 
   return (
     <div>
-      {alarms == user?.Location && <h1>'alarm', `alarm in {alarms}</h1>}
+      {alarms == user?.Location && <h1>'alarm', `alarm in {alarms} {timer}</h1>}
       {user && <h1>{user.Location}</h1>}
       {munitions && munitions.map(x => <div
         key={x.name}
