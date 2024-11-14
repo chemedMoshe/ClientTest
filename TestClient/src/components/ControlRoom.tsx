@@ -18,8 +18,6 @@ export default function ControlRoom() {
   }, [accountDispatch])
 
  
-
-
   return (
     <div>
       {munitions && munitions.map(x => <div
@@ -36,7 +34,7 @@ export default function ControlRoom() {
             ))
           }
           }
-          disabled={!location}
+          disabled={!location && x.amount< 0}
         >Dispatch</button>
         </div>)}
 

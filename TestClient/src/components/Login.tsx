@@ -21,6 +21,7 @@ export default function Login() {
             </label>
         <button className="login-button"
         onClick={()=> dispatch(fetchLogin({username,password}))}
+        disabled={!username || !password}
         >Login</button>
         {user.error && <h1>{"please try again"}</h1>}
     </div>

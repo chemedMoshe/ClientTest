@@ -52,6 +52,7 @@ export default function Register() {
                         Organization: Organization as OrganizationEnum,
                         Location: Location as LocationsEnum
                     }))}
+                disabled={!Name || !Password || !Organization}    
             >Register</button>
         </div>
     )
