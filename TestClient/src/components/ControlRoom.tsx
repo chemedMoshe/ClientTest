@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { LocationsEnum } from '../types/LocationEnum';
 import { socket } from '../main';
 
-export default function ControlRoom() {
+export default function DispatchRoom() {
   const user = useAppSelector(state => state.user)
   const munitions = useAppSelector(state => state.munitions.munitions)
   const dispatchForUser = useAppSelector(state => state.munitions.dispatch)
@@ -17,7 +17,7 @@ export default function ControlRoom() {
     dispatch(fetchGetDispatch(user?.user?.Id!))
   }, [accountDispatch])
 
- 
+
   return (
     <div>
       {munitions && munitions.map(x => <div
@@ -25,21 +25,21 @@ export default function ControlRoom() {
       >
         {x.name} {x.amount}
         <button
-          onClick={() =>{
-            socket.emit('dispatch',  location )
-             dispatch(fetchNewDispatch({ 
+          onClick={() => {
+            socket.emit('dispatch', {location,name:x.name})
+            dispatch(fetchNewDispatch({
               id: user?.user?.Id!,
-               missiles: x.name, location 
-              }
+              missiles: x.name, location
+            }
             ))
           }
           }
-          disabled={!location && x.amount< 0}
+          disabled={!location && x.amount < 0}
         >Dispatch</button>
-        </div>)}
+      </div>)}
 
-      
-        <label>Location:
+
+      <label>Location:
         <select onChange={(e) => setlocation(e.target.value)}>
           <option disabled >Select</option>
           <option value={LocationsEnum.south}>South</option>
@@ -47,8 +47,8 @@ export default function ControlRoom() {
           <option value={LocationsEnum.center}>Center</option>
           <option value={LocationsEnum.JudeaAndSamaria}>JudeaAndSamaria</option>
         </select>
-        </label>
-      
+      </label>
+
       {dispatchForUser && dispatchForUser.map((x, i) => <p key={i}>{x.name} {x.status} </p>)}
     </div>
   )

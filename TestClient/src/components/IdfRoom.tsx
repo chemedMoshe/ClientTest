@@ -10,8 +10,8 @@ export default function IdfRoom() {
   const dispatch = useAppDispatch();
  const [alarms , setAlarms] = useState('')
 
-  socket.on('alarm', (data) => {
-    setAlarms(data)
+  socket.on('alarm', (data:{location:string,name:string,time:number}) => {
+    setAlarms(data.location)
   })
  
   useEffect(() => {
